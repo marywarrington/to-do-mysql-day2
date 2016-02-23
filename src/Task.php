@@ -67,11 +67,10 @@ class Task
         $GLOBALS['DB']->exec("DELETE FROM tasks;");
     }
 
-    static function deleteFromCategory()
+    static function deleteFromCategory($category_id)
     {
-        $GLOBALS['DB']->exec("DELETE FROM tasks; WHERE category_id = '{$this->getCategoryId()}'");
+        $GLOBALS['DB']->exec("DELETE FROM tasks WHERE category_id = {$category_id};");
     }
-
 
     static function find($search_id)
     {

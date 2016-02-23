@@ -43,10 +43,11 @@
         return $app['twig']->render('categories.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
     });
 
-    $app->post("/delete_tasks", function() use ($app) {
-        Task::deleteFromCategory();
-        $category = Category::find($id);
-        return $app['twig']->render('categories.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
+    $app->post("/delete_tasks/{id}", function($id) use ($app) {
+        $category_id = Category::find($id);
+        Task::deleteFromCategory($category_id->getId());
+
+        return $app['twig']->render('categories.html.twig', array('category' => $category_id));
     });
 
     $app->post("/categories", function() use ($app) {

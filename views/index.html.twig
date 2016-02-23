@@ -19,8 +19,6 @@
             <ul>
                 {% for category in categories %}
                     <li><a href="/categories/{{ category.getId }}">{{ category.getName }}</a></li>
-                    <form action='/delete_categories' method='post'>
-                    </form>
                 {% endfor %}
             </ul>
             <form action='/delete_categories' method='post'>
