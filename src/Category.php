@@ -50,15 +50,16 @@
             $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks WHERE category_id = {$this->getId()};");
             foreach($returned_tasks as $task) {
                 $description = $task['description'];
+                $due_date = $task['due_date'];
                 $id = $task['id'];
                 $category_id = $task['category_id'];
-                $new_task = new Task($description, $id, $category_id);
+                $new_task = new Task($description, $due_date, $id, $category_id);
                 array_push($tasks, $new_task);
             }
             return $tasks;
         }
 
-        static function deleteAll()
+        static function deleteCategories()
         {
           $GLOBALS['DB']->exec("DELETE FROM categories;");
         }
