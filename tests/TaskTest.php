@@ -96,7 +96,7 @@
             $test_task->save();
 
             $description2 = "Water the lawn";
-            $test_task2 = new Task($description2, $id2, $category_id);
+            $test_task2 = new Task($description2, $id, $category_id);
             $test_task2->save();
             //Act
             $result = Task::getAll();
@@ -119,7 +119,7 @@
             $test_task->save();
 
             $description2 = "Water the lawn";
-            $test_task2 = new Task($description2, $id2, $category_id);
+            $test_task2 = new Task($description2, $id, $category_id);
             $test_task2->save();
 
             //Act
