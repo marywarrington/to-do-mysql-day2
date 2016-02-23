@@ -3,11 +3,14 @@ class Task
 {
     private $description;
     private $id;
+    private $category_id;
 
-    function __construct($task_description, $task_id = null)
+
+    function __construct($task_description, $task_id = null, $task_category_id)
     {
         $this->description = $task_description;
         $this->id = $task_id;
+        $this->category_id = $task_category_id;
     }
 
     function setDescription($new_description)
@@ -22,7 +25,7 @@ class Task
 
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO tasks (description) VALUES ('{$this->getDescription()}');");
+        $GLOBALS['DB']->exec("INSERT INTO tasks (description, category_id) VALUES ('{$this->getDescription()}', {$this->getCategoryId()});");
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
