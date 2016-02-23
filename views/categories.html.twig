@@ -23,11 +23,20 @@
             <input id="category_id" name="category_id" type="hidden" value="{{ category.getId() }}">
             <label for='description'>Task Description</label>
             <input id='description' name='description' type='text'>
-            <label for='due_date'>Due Date (YEAR-XX-XX)</label>
-            <input id='due_date' name='due_date' type='text'>
+            <label for='due_date'>Due Date</label>
+            <input id='due_date' name='due_date' type='date'>
 
             <button type='submit'>Add task</button>
         </form>
+        <!-- {% if tasks is not empty %} -->
+
+        <h4>Search for a Task by Due Date</h4>
+        <form action='/date_search' method='post'>
+            <label for='search_date'>Due Date (YEAR-XX-XX)</label>
+            <input id='search_date' name='search_date' type='date'>
+            <button type='submit'>Search for tasks</button>
+        </form>
+        <!-- {% endif %} -->
 
         <p><a href='/'>Home</a></p>
     </body>

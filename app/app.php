@@ -29,7 +29,7 @@
     });
 
     $app->get("/categories/{id}", function($id) use ($app) {
-        $category = Category::find($id);
+        $category = Category::findById($id);
         return $app['twig']->render('categories.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
     });
 
@@ -39,12 +39,12 @@
         $due_date = $_POST['due_date'];
         $task = new Task($description, $due_date, $id = null, $category_id);
         $task->save();
-        $category = Category::find($category_id);
+        $category = Category::findById($category_id);
         return $app['twig']->render('categories.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
     });
 
     $app->post("/delete_tasks/{id}", function($id) use ($app) {
-        $category_id = Category::find($id);
+        $category_id = Category::findById($id);
         Task::deleteFromCategory($category_id->getId());
 
         return $app['twig']->render('categories.html.twig', array('category' => $category_id));
@@ -60,6 +60,14 @@
         Category::deleteCategories();
         return $app['twig']->render('index.html.twig');
     });
+
+    // $app->post("/date_search", function() use ($app) {
+    //     // $category_id = Category::findById($id);
+    //     $search_date = $_POST['search_date'];
+    //     Task::findByDate($search_date);
+    //
+    //     return $app['twig']->render('categories.html.twig', array('category' => $category, 'tasks' => $));
+    // });
 
     return $app;
 ?>

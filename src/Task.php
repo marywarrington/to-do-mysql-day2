@@ -48,7 +48,7 @@ class Task
 
     static function getAll()
     {
-        $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks;");
+        $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks ORDER BY due_date;");
         $tasks = array();
 
         foreach($returned_tasks as $task) {
@@ -72,7 +72,7 @@ class Task
         $GLOBALS['DB']->exec("DELETE FROM tasks WHERE category_id = {$category_id};");
     }
 
-    static function find($search_id)
+    static function findById($search_id)
     {
         $found_task = null;
         $tasks = Task::getAll();
@@ -83,6 +83,21 @@ class Task
             }
         }
         return $found_task;
+    }
+
+    static function findByDate($search_date)
+    {
+        // $found_task = null;
+        // $tasks = Task::getAll();
+        // foreach($tasks as $task) {
+        //     $task_due_date = $task->getDueDate();
+        //     if ($task_due_date == $search_date) {
+        //         $found_task = $task;
+        //     }
+        // }
+        // return $found_task;
+        $GLOBALS['DB']->exec("SELECT * FROM tasks WHERE search_date = {$due_date};");
+
     }
 
 
