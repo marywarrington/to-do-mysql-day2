@@ -6,6 +6,7 @@
     */
 
     require_once "src/Task.php";
+    require_once "src/Category.php";
 
     $server = 'mysql:host=localhost;dbname=to_do_test';
     $username = 'root';
@@ -25,7 +26,7 @@
         {
             //Arrange
             $description = "Wash the dog";
-            $test_task = new Task($description);
+            $test_task = new Task($description, $id, $category_id);
 
             //Act
             $test_task->save();
@@ -40,9 +41,9 @@
             //Arrange
             $description = "Wash the dog";
             $description2 = "Water the lawn";
-            $test_task = new Task($description);
+            $test_task = new Task($description, $id, $category_id);
             $test_task->save();
-            $test_task2 = new Task($description2);
+            $test_task2 = new Task($description2, $id2, $category_id2);
             $test_task2->save();
 
             //Act
@@ -57,9 +58,9 @@
             //Arrange
             $description = "Wash the dog";
             $description2 = "Water the lawn";
-            $test_task = new Task($description);
+            $test_task = new Task($description, $id, $category_id);
             $test_task->save();
-            $test_task2 = new Task($description2);
+            $test_task2 = new Task($description2, $id2, $category_id2);
             $test_task2->save();
 
             //Act
@@ -75,7 +76,7 @@
             //Arrange
             $description = "Wash the dog";
             $id = 1;
-            $test_Task = new Task($description, $id);
+            $test_Task = new Task($description, $id, $category_id);
 
             //Act
             $result = $test_Task->getId();
@@ -89,9 +90,9 @@
             //Arrange
             $description = "Wash the dog";
             $description2 = "Water the lawn";
-            $test_task = new Task($description);
+            $test_task = new Task($description, $id, $category_id);
             $test_task->save();
-            $test_task2 = new Task($description2);
+            $test_task2 = new Task($description, $id, $category_id);
             $test_task2->save();
 
             //Act
